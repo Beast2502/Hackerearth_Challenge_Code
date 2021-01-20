@@ -19,12 +19,15 @@ class Index extends Component {
 
   state={
     persons:[],
-    searchBox: " "
+    searchBox: " ",
+    personsnew:[]
   }
+
+ 
 
   componentDidMount(){
 
-    axios.get(`https://s3-ap-southeast-1.amazonaws.com/he-public-data/users49b8675.json`)
+    axios.get(`https://jsonplaceholder.typicode.com/photos`)
     .then(res=>{
       this.setState({
         persons: res.data
@@ -43,13 +46,11 @@ class Index extends Component {
   }
   render() {
 
-    const filterdata = this.state.persons.filter((data)=>
-    {
-      return data.name.toLowerCase().includes(this.state.searchBox.toLowerCase())
-    })
+    
+    
       
     const HomePage =()=>{
-      return (<Home data = {filterdata}/>)
+      return (<Home data = {this.state.persons}/>)
     }
    
     return (
